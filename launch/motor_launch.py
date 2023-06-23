@@ -6,12 +6,17 @@ from launch_ros.actions import Node
 
 def generate_launch_description():
     """Generate launch description with multiple components."""
-    container2 = Node(  package='motor',
-                        namespace='motor',
+    container1 = Node(  package='motor',
+                        namespace='',
                         executable='motor_node',
                         output='both',)
     
-    container = ComposableNodeContainer(
+    container2 = Node(  package='my_happy_topic',
+                        namespace ='',
+                        executable='my_happy_publisher_node', 
+                        output='both',)
+    
+    container3 = ComposableNodeContainer(
             name='test_node',
             namespace='',
             package='rclcpp_components',
@@ -28,4 +33,4 @@ def generate_launch_description():
     
     
 
-    return launch.LaunchDescription([container, container2])
+    return launch.LaunchDescription([container1, container3])
